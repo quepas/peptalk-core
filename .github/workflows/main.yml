@@ -6,6 +6,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+    - name: "Install PAPI"
+      run: |
+        sudo apt-get update
+        sudo apt-get install papi-tools
     - name: "Install gcc/g++ 9.0"
       run: |
         wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
