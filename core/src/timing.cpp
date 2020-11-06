@@ -1,14 +1,8 @@
 //
 // Created by quepas on 13/04/2020.
 //
-
-#if defined __cpp_lib_filesystem
-    #include <filesystem>
-    namespace fs = std::filesystem;
-#else
-    #include <experimental/filesystem>
-    namespace fs = std::experimental::filesystem;
-#endif
+#include <filesystem>
+namespace fs = std::filesystem;
 #include "timing.hpp"
 
 using std::string;

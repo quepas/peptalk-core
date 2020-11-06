@@ -5,7 +5,8 @@
 #include "counting.hpp"
 
 #include <papi.h>
-#include <experimental/filesystem>
+#include <filesystem>
+namespace fs = std::filesystem;
 
 using std::string;
 using std::to_string;
@@ -59,7 +60,7 @@ namespace peptalk::counting {
             OnErrorOrWarning("Failed to add performance events to the event set.", PAPI_strerror(retval));
             return false;
         }
-        auto result_file_exists = std::experimental::filesystem::exists(result_file);
+        auto result_file_exists = fs::exists(result_file);
         global_counting_info.measurements.reserve(num_measurements * global_counting_info.num_events);
         global_counting_info.result_fd = fopen(global_counting_info.result_file.c_str(), "a");
         if (!result_file_exists) {
