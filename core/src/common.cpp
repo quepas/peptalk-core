@@ -8,7 +8,7 @@
 using namespace peptalk;
 using std::string;
 
-void StdoutError(const string &peptalk_error, const string &papi_error) {
+void peptalk::StdoutError(const string &peptalk_error, const string &papi_error) {
     std::cout << "Error\n"
               << "\tPeptalk=" << peptalk_error
               << "\tPAPI=" << papi_error << std::endl;
