@@ -9,8 +9,7 @@
 #include <functional>
 #include <string>
 #include <vector>
-
-typedef const std::function<void(const std::string &, const std::string &)> error_callback_type;
+#include "common.h"
 
 namespace peptalk::timing {
 

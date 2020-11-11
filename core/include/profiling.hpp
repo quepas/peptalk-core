@@ -8,10 +8,9 @@
 #include <string>
 #include <vector>
 #include <functional>
+#include "common.h"
 
 namespace peptalk::profiling {
-
-    typedef const std::function<void(const std::string &, const std::string &)> error_callback_type;
 
     bool
     Init(const std::string &profiling_result_file, const std::string &overflow_event, int overflow_threshold,

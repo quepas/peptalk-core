@@ -2,7 +2,7 @@
 // Created by quepas on 15/04/2020.
 //
 
-#include "counting.hpp"
+#include "counting_in_file.hpp"
 
 #include <papi.h>
 #include <filesystem>
@@ -11,7 +11,7 @@ namespace fs = std::filesystem;
 using std::string;
 using std::to_string;
 
-namespace peptalk::counting {
+namespace peptalk::counting_in_file {
 
     const char DELIMITER = ',';
 

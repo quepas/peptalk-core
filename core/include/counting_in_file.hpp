@@ -5,13 +5,12 @@
 #ifndef PEP_TALK_COUNTING_HPP
 #define PEP_TALK_COUNTING_HPP
 
+#include <functional>
 #include <string>
 #include <vector>
-#include <functional>
+#include "common.h"
 
-typedef const std::function<void(const std::string &, const std::string &)> error_callback_type;
-
-namespace peptalk::counting {
+namespace peptalk::counting_in_file {
 
     bool Init(const std::string &result_file,
               const std::vector<std::string> &parameters_names,
