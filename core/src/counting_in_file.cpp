@@ -11,6 +11,8 @@ namespace fs = std::filesystem;
 using std::string;
 using std::to_string;
 
+using peptalk::error_callback_type;
+
 namespace peptalk::counting_in_file {
 
     const char DELIMITER = ',';

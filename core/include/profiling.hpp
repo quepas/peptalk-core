@@ -8,20 +8,20 @@
 #include <string>
 #include <vector>
 #include <functional>
-#include "common.h"
+#include "common.hpp"
 
 namespace peptalk::profiling {
 
     bool
     Init(const std::string &profiling_result_file, const std::string &overflow_event, int overflow_threshold,
          const std::vector<std::string> &measured_events, bool include_instruction_address,
-         error_callback_type &OnErrorOrWarning);
+         peptalk::error_callback_type &OnErrorOrWarning);
 
-    bool Start(const std::string &trace_header, error_callback_type &OnErrorOrWarning);
+    bool Start(const std::string &trace_header, peptalk::error_callback_type &OnErrorOrWarning);
 
-    bool Stop(error_callback_type &OnErrorOrWarning);
+    bool Stop(peptalk::error_callback_type &OnErrorOrWarning);
 
-    bool Close(error_callback_type &OnErrorOrWarning);
+    bool Close(peptalk::error_callback_type &OnErrorOrWarning);
 
 }
 

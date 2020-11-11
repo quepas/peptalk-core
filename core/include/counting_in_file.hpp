@@ -8,7 +8,7 @@
 #include <functional>
 #include <string>
 #include <vector>
-#include "common.h"
+#include "common.hpp"
 
 namespace peptalk::counting_in_file {
 
@@ -16,13 +16,13 @@ namespace peptalk::counting_in_file {
               const std::vector<std::string> &parameters_names,
               const std::vector<std::string> &performance_events,
               unsigned int num_measurements,
-              error_callback_type &OnErrorOrWarning);
+              peptalk::error_callback_type &OnErrorOrWarning);
 
-    bool Start(const std::vector<std::string> &parameters, error_callback_type &OnErrorOrWarning);
+    bool Start(const std::vector<std::string> &parameters, peptalk::error_callback_type &OnErrorOrWarning);
 
-    bool Stop(error_callback_type &OnErrorOrWarning);
+    bool Stop(peptalk::error_callback_type &OnErrorOrWarning);
 
-    bool Close(error_callback_type &OnErrorOrWarning);
+    bool Close(peptalk::error_callback_type &OnErrorOrWarning);
 
 }
 

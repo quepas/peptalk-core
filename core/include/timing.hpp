@@ -9,17 +9,21 @@
 #include <functional>
 #include <string>
 #include <vector>
-#include "common.h"
+#include "common.hpp"
 
 namespace peptalk::timing {
 
-    void Init(const std::string& result_file, const std::vector<std::string>& parameters_names, unsigned int num_measurements, error_callback_type& OnErrorOrWarning);
+    void Init(const std::string& result_file,
+              const std::vector<std::string>& parameters_names,
+              unsigned int num_measurements,
+              peptalk::error_callback_type& OnErrorOrWarning);
 
-    void Start(const std::vector<std::string>& parameters, error_callback_type& OnErrorOrWarning);
+    void Start(const std::vector<std::string>& parameters,
+               peptalk::error_callback_type& OnErrorOrWarning);
 
-    void Stop(error_callback_type& OnErrorOrWarning);
+    void Stop(peptalk::error_callback_type& OnErrorOrWarning);
 
-    void Close(error_callback_type& OnErrorOrWarning);
+    void Close(peptalk::error_callback_type& OnErrorOrWarning);
 
     class GenericTimer {
     public:

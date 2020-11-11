@@ -15,6 +15,8 @@ using std::string;
 using std::to_string;
 using std::vector;
 
+using peptalk::error_callback_type;
+
 namespace peptalk::profiling {
 
     struct ProfilingInfo {
