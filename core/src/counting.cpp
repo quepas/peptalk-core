@@ -74,4 +74,18 @@ namespace peptalk::counting {
         return measurements;
     }
 
+    bool Cleanup(peptalk::error_callback_type &OnErrorOrWarning /*= peptalk::StdoutError*/) {
+        int retval;
+        if ((retval = PAPI_cleanup_eventset(global_counting_info.event_set)) != PAPI_OK) {
+            OnErrorOrWarning("Failed to cleanup the event set.", PAPI_strerror(retval));
+            return false;
+        }
+        if ((retval = PAPI_destroy_eventset(&global_counting_info.event_set)) != PAPI_OK) {
+            OnErrorOrWarning("Failed to destroy the event set.", PAPI_strerror(retval));
+            return false;
+        }
+        PAPI_shutdown();
+        return true;
+    }
+
 }

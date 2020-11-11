@@ -18,6 +18,8 @@ namespace peptalk::counting {
 
     std::vector<peptalk::measurement_type> Stop(peptalk::error_callback_type &OnErrorOrWarning = peptalk::StdoutError);
 
+    bool Cleanup(peptalk::error_callback_type &OnErrorOrWarning = peptalk::StdoutError);
+
 }
 
 #endif //PEPTALK_CORE_LIBRARIES_COUNTING_HPP
