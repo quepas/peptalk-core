@@ -2,7 +2,7 @@
 // Created by quepas on 14/02/2020.
 //
 
-#include "profiling.hpp"
+#include "profiling_in_file.hpp"
 #include "PEPWriter.hpp"
 
 #include <iostream>
@@ -17,7 +17,7 @@ using std::vector;
 
 using peptalk::error_callback_type;
 
-namespace peptalk::profiling {
+namespace peptalk::profiling_in_file {
 
     struct ProfilingInfo {
         int event_set = PAPI_NULL;

@@ -10,7 +10,7 @@
 #include <functional>
 #include "common.hpp"
 
-namespace peptalk::profiling {
+namespace peptalk::profiling_in_file {
 
     bool
     Init(const std::string &profiling_result_file, const std::string &overflow_event, int overflow_threshold,
