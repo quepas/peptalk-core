@@ -2,8 +2,8 @@
 // Created by quepas on 15/04/2020.
 //
 
-#ifndef PEP_TALK_COUNTING_HPP
-#define PEP_TALK_COUNTING_HPP
+#ifndef PEP_TALK_CORE_LIBRARIES_COUNTING_IN_FILE_HPP
+#define PEP_TALK_CORE_LIBRARIES_COUNTING_IN_FILE_HPP
 
 #include <functional>
 #include <string>
@@ -26,4 +26,4 @@ namespace peptalk::counting_in_file {
 
 }
 
-#endif //PEP_TALK_COUNTING_HPP
+#endif //PEP_TALK_CORE_LIBRARIES_COUNTING_IN_FILE_HPP
