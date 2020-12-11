@@ -12,10 +12,12 @@
 
 namespace peptalk::profiling {
 
+    /*
+     * The first measured event is the overflow event
+     */
     bool
-    Init(const std::string &overflow_event, int overflow_threshold,
-         const std::vector<std::string> &measured_events, bool include_instruction_address,
-         peptalk::error_callback_type &OnErrorOrWarning = peptalk::StdoutError);
+    Init(const std::vector<std::string> &measured_events, bool include_instruction_address,
+         int overflow_threshold, peptalk::error_callback_type &OnErrorOrWarning = peptalk::StdoutError);
 
     bool Start(peptalk::error_callback_type &OnErrorOrWarning = peptalk::StdoutError);
 
