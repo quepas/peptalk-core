@@ -1,13 +1,8 @@
 #include "PEPWriter.hpp"
 
 #include <iostream>
-#if defined __cpp_lib_filesystem
 #include <filesystem>
 namespace fs = std::filesystem;
-#else
-#include <experimental/filesystem>
-namespace fs = std::experimental::filesystem;
-#endif
 
 using std::cout;
 using std::cerr;

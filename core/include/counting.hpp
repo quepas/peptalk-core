@@ -1,30 +1,25 @@
 //
-// Created by quepas on 15/04/2020.
+// Created by quepas on 11/11/2020.
 //
 
-#ifndef PEP_TALK_COUNTING_HPP
-#define PEP_TALK_COUNTING_HPP
+#ifndef PEPTALK_CORE_LIBRARIES_COUNTING_HPP
+#define PEPTALK_CORE_LIBRARIES_COUNTING_HPP
 
 #include <string>
 #include <vector>
-#include <functional>
-
-typedef const std::function<void(const std::string &, const std::string &)> error_callback_type;
+#include "common.hpp"
 
 namespace peptalk::counting {
 
-    bool Init(const std::string &result_file,
-              const std::vector<std::string> &parameters_names,
-              const std::vector<std::string> &performance_events,
-              unsigned int num_measurements,
-              error_callback_type &OnErrorOrWarning);
+    bool Init(const std::vector<std::string>& performance_events,
+              peptalk::error_callback_type &OnErrorOrWarning = peptalk::StdoutError);
 
-    bool Start(const std::vector<std::string> &parameters, error_callback_type &OnErrorOrWarning);
+    bool Start(peptalk::error_callback_type &OnErrorOrWarning = peptalk::StdoutError);
 
-    bool Stop(error_callback_type &OnErrorOrWarning);
+    std::vector<peptalk::measurement_type> Stop(peptalk::error_callback_type &OnErrorOrWarning = peptalk::StdoutError);
 
-    bool Close(error_callback_type &OnErrorOrWarning);
+    bool Cleanup(peptalk::error_callback_type &OnErrorOrWarning = peptalk::StdoutError);
 
 }
 
-#endif //PEP_TALK_COUNTING_HPP
+#endif //PEPTALK_CORE_LIBRARIES_COUNTING_HPP

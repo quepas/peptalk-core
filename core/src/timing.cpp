@@ -8,6 +8,8 @@ namespace fs = std::filesystem;
 using std::string;
 using std::to_string;
 
+using peptalk::error_callback_type;
+
 namespace peptalk::timing {
 
     const char DELIMITER = ',';

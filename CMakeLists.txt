@@ -10,3 +10,4 @@ set( CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/lib )
 
 add_subdirectory( io )
 add_subdirectory( core )
+add_subdirectory( test )

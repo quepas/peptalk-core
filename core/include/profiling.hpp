@@ -2,28 +2,41 @@
 // Created by quepas on 14/02/2020.
 //
 
-#ifndef PEP_TALK_PROFILING_HPP
-#define PEP_TALK_PROFILING_HPP
+#ifndef PEP_TALK_CORE_LIBRARIES_PROFILING_HPP
+#define PEP_TALK_CORE_LIBRARIES_PROFILING_HPP
 
 #include <string>
 #include <vector>
 #include <functional>
+#include "common.hpp"
 
 namespace peptalk::profiling {
 
-    typedef const std::function<void(const std::string &, const std::string &)> error_callback_type;
-
+    /*
+     * The first measured event is the overflow event
+     */
     bool
-    Init(const std::string &profiling_result_file, const std::string &overflow_event, int overflow_threshold,
-         const std::vector<std::string> &measured_events, bool include_instruction_address,
-         error_callback_type &OnErrorOrWarning);
+    Init(const std::vector<std::string> &measured_events, bool include_instruction_address,
+         int overflow_threshold, peptalk::error_callback_type &OnErrorOrWarning = peptalk::StdoutError);
 
-    bool Start(const std::string &trace_header, error_callback_type &OnErrorOrWarning);
+    bool Start(peptalk::error_callback_type &OnErrorOrWarning = peptalk::StdoutError);
 
-    bool Stop(error_callback_type &OnErrorOrWarning);
+    bool Stop(peptalk::error_callback_type &OnErrorOrWarning = peptalk::StdoutError);
 
-    bool Close(error_callback_type &OnErrorOrWarning);
+    bool Cleanup(peptalk::error_callback_type &OnErrorOrWarning = peptalk::StdoutError);
+
+    const std::vector<peptalk::measurement_type>& GetProfile(int index);
+
+    std::string GetProfileEvent(int index);
+
+    int GetNumProfile();
+
+    long GetProfileSize();
+
+    bool HasInstructionAddress();
+
+    const std::vector<peptalk::inst_address_type>& GetInstructionAddress();
 
 }
 
-#endif //PEP_TALK_PROFILING_HPP
+#endif //PEP_TALK_CORE_LIBRARIES_PROFILING_HPP
