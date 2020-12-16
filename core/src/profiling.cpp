@@ -20,9 +20,8 @@ namespace peptalk::profiling {
 
     struct ProfilingInfo {
         int event_set = PAPI_NULL;
+        std::vector<std::string> events;
         std::vector<peptalk::inst_address_type> instruction_address;
-        // If dynamic allocation is not possible, create several measurement vectors 1, 2, 3, ...
-        // TODO: use std::vector for the domain only!
         std::vector<peptalk::measurement_type>* measurements = nullptr;
         int overflow_event_codes = 0;
         int overflow_threshold = 1e4;
@@ -52,6 +51,7 @@ namespace peptalk::profiling {
     Init(const std::vector<std::string> &measured_events, bool include_instruction_address,
          int overflow_threshold, peptalk::error_callback_type &OnErrorOrWarning /*= peptalk::StdoutError*/) {
         auto num_events = measured_events.size();
+        global_profiling_info.events.insert(global_profiling_info.events.end(), measured_events.begin(), measured_events.end());
         global_profiling_info.overflow_threshold = overflow_threshold;
         global_profiling_info.measurements = new vector<measurement_type>[num_events];
         global_profiling_info.has_inst_address = include_instruction_address;
@@ -138,11 +138,34 @@ namespace peptalk::profiling {
             return false;
         }
         PAPI_shutdown();
+        auto num_events = PAPI_num_events(global_profiling_info.event_set);
+        for (int idx = 0; idx < num_events; ++idx) {
+            global_profiling_info.measurements[idx].clear();
+        }
+        delete[] global_profiling_info.measurements;
+        global_profiling_info.events.clear();
+        global_profiling_info.instruction_address.clear();
         return true;
     }
 
     const std::vector<peptalk::measurement_type>& GetProfile(int index) {
         return global_profiling_info.measurements[index];
+    }
+
+    std::string GetProfileEvent(int index) {
+        return global_profiling_info.events[index];
+    }
+
+    int GetNumProfile() {
+         return global_profiling_info.events.size();
+    }
+
+    long GetProfileSize() {
+        return global_profiling_info.measurements[0].size();
+    }
+
+    bool HasInstructionAddress() {
+        return !global_profiling_info.instruction_address.empty();
     }
 
     const std::vector<peptalk::inst_address_type>& GetInstructionAddress() {

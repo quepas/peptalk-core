@@ -27,6 +27,14 @@ namespace peptalk::profiling {
 
     const std::vector<peptalk::measurement_type>& GetProfile(int index);
 
+    std::string GetProfileEvent(int index);
+
+    int GetNumProfile();
+
+    long GetProfileSize();
+
+    bool HasInstructionAddress();
+
     const std::vector<peptalk::inst_address_type>& GetInstructionAddress();
 
 }
