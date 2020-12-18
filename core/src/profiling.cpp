@@ -9,6 +9,7 @@
 
 using std::cerr;
 using std::endl;
+using std::find;
 using std::function;
 using std::string;
 using std::to_string;
@@ -110,8 +111,14 @@ namespace peptalk::profiling {
             OnErrorOrWarning("Failed to stop the profiling", PAPI_strerror(retval));
             return false;
         }
-        for (int i = 0; i < num_events; ++i) {
-            global_profiling_info.measurements[i].push_back(counter_values[i]);
+        /* For small overflow thresholds there is not last, dangling measurement which should be taken.
+        *  Instead, the overflow callback has already measure it.
+        */
+        auto overflow_event = global_profiling_info.measurements[0];
+        if (find(overflow_event.begin(), overflow_event.end(), counter_values[0]) == overflow_event.end()) {
+            for (int i = 0; i < num_events; ++i) {
+                global_profiling_info.measurements[i].push_back(counter_values[i]);
+            }
         }
 
         if ((retval = PAPI_reset(global_profiling_info.event_set)) != PAPI_OK) {
