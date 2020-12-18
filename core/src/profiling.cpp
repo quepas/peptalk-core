@@ -111,11 +111,12 @@ namespace peptalk::profiling {
             OnErrorOrWarning("Failed to stop the profiling", PAPI_strerror(retval));
             return false;
         }
-        /* For small overflow thresholds there is not last, dangling measurement which should be taken.
-        *  Instead, the overflow callback has already measure it.
-        */
+        /*  For small overflow thresholds there is no last dangling measurement which should be taken.
+         *  Instead, the overflow callback has already measure it. In this case, the value of an overflow event,
+         *  measured here, is less than the last measurement from the overflow callback.
+         */
         auto overflow_event = global_profiling_info.measurements[0];
-        if (find(overflow_event.begin(), overflow_event.end(), counter_values[0]) == overflow_event.end()) {
+        if (overflow_event.back() < counter_values[0]) {
             for (int i = 0; i < num_events; ++i) {
                 global_profiling_info.measurements[i].push_back(counter_values[i]);
             }
